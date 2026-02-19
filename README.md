@@ -139,6 +139,17 @@ Pull requests welcome!
 
 ---
 
+---
+
+## 👨‍💻 Created by
+
+**Saadh Jawwadh**
+[GitHub](https://github.com/SaadhJawwadh) | [Twitter](https://twitter.com/SaadhJawwadh) | [LinkedIn](https://linkedin.com/in/saadhjawwadh)
+
+✨ *Vibe coded with [Antigravity](https://antigravity.ai)*
+
+---
+
 ## 📄 License
 
 MIT © 2026 — see [LICENSE](LICENSE)
