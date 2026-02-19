@@ -3,12 +3,14 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main, master]
+    tags:
+      - 'v*'
   # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
 # Grant GITHUB_TOKEN permissions to deploy to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -39,3 +41,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: CHANGELOG.md
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
