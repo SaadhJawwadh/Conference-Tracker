@@ -12,15 +12,15 @@
 
 | Feature | Description |
 |---------|-------------|
-| 📊 **Quality Filtering** | Filter by CORE A*/A/B rankings, Scimago Q1-Q4, or H-index ranges |
-| ⏰ **Live Deadline Tracking** | Color-coded countdowns (green → amber → red → closed) |
-| 🔄 **Real-time Fetching** | Pull live CFP data from WikiCFP RSS feeds via CORS proxy |
-| 💾 **Offline-first** | IndexedDB caches all data for offline use |
-| ⭐ **Bookmarks** | Star conferences and view them in a side panel |
-| 📝 **Notes** | Add personal notes to any conference row |
-| 📥 **CSV Export** | Export your filtered view to a spreadsheet |
-| 🌓 **Dark / Light Mode** | Persisted preference via localStorage |
-| ⌨️ **Keyboard Shortcuts** | `⌘K` / `Ctrl+K` to focus search, `Esc` to close modals |
+| 🌓 **Premium Themes** | Full Dark & Light mode support with persistent user preferences |
+| 📊 **Unified Explorer** | Search, filter, and track conferences in a single cohesive dashboard |
+| 🔄 **WikiCFP Sync** | Real-time fetching from WikiCFP RSS feeds for community conferences |
+| 💾 **Offline Persistence** | Powered by IndexedDB — your data, bookmarks, and notes are always available |
+| ⭐ **Bookmarks** | Star important conferences and manage them in the slide-out panel |
+| 📝 **Personal Notes** | Add private notes to any conference row for research planning |
+| 📅 **Deadline Countdown** | Precise color-coded countdowns for paper & abstract deadlines |
+| 📥 **Export to CSV** | Snapshot your research planning with one-click CSV exporting |
+| ⌨️ **Keyboard Navigation** | `⌘K` to search, `Esc` to close panels, fully responsive design |
 
 ---
 
