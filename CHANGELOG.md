@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-02-19
+
+### 🎨 Branding & UX Consistency
+- **Creator Branding**: Added "Created by Saadh Jawwadh" and "vibe coded with Antigravity" to the footer and README.
+- **Unified Sync Display**: Synchronized the "Last Synced" time formatting between the header and footer for absolute consistency.
+- **Social Integration**: Integrated social media icons (GitHub, Twitter, LinkedIn) into the application footer.
+- **Live Demo Link**: Updated official README with the live GitHub Pages demo URL.
+
 ## [2.0.0] - 2026-02-19
 
 ### 🚀 Major UI/UX Overhaul
@@ -23,4 +31,5 @@ All notable changes to this project will be documented in this file.
 - **Performance**: Optimized re-rendering logic to handle larger datasets smoothly.
 - **Responsiveness**: Improved mobile layout for the search bar and filter dropdowns.
 
-[2.0.0]: https://github.com/your-username/conference-tracker/releases/tag/v2.0.0
+[2.1.0]: https://github.com/SaadhJawwadh/Conference-Tracker/releases/tag/v2.1.0
+[2.0.0]: https://github.com/SaadhJawwadh/Conference-Tracker/releases/tag/v2.0.0

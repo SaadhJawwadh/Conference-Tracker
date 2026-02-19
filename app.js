@@ -338,11 +338,23 @@ async function fetchLatestData() {
 function updateLastSyncDisplay(isoStr, count) {
     if (!isoStr) return;
     const d = new Date(isoStr);
-    const opts = { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-    document.getElementById('lastUpdated').textContent = d.toLocaleDateString('en-US', opts);
+    const opts = {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+    const formattedDate = d.toLocaleString('en-US', opts);
+
+    // Update both displays consistently
+    document.getElementById('lastUpdated').textContent = formattedDate;
     document.getElementById('lastSyncText').textContent =
-        `Last synced ${d.toLocaleString('en-US', opts)} — ${count} conferences in database`;
-    document.getElementById('liveBadge').style.display = 'flex';
+        `Last synced ${formattedDate} — ${count} conferences in database`;
+
+    // Ensure status indicators are visible
+    const liveBadge = document.getElementById('liveBadge');
+    if (liveBadge) liveBadge.style.display = 'flex';
 }
 
 // ——— Rendering ———
