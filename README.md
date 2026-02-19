@@ -2,7 +2,7 @@
 
 > A real-time academic conference tracker for Computer Science & AI researchers — filter by quality rank, topic, platform, and deadline urgency.
 
-[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-blue?logo=github)](https://your-username.github.io/conference-tracker)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-blue?logo=github)](https://saadhjawwadh.github.io/Conference-Tracker/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Conferences](https://img.shields.io/badge/Conferences-22%2B-brightgreen)]()
 
