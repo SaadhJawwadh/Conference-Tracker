@@ -726,7 +726,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initial render
     applyFilters();
 
-    // ——— Dynamic Header Height (keeps sticky thead flush below sticky header) ———
+    // ——— Dynamic Header Height (keeps sticky thead flush below site header) ———
     const headerEl = document.getElementById('header');
     const updateHeaderHeight = () => {
         document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');

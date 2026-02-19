@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Fetch Status Bar -->
+            <!-- Fetch Status Bar (Integrated into Header for accurate sticky offsets) -->
             <div class="fetch-status-bar" id="fetchStatusBar" style="display:none">
                 <div class="fetch-status-inner">
                     <div class="fetch-progress-track">
@@ -154,102 +154,103 @@
             <span id="lastSyncText">No sync yet – press Fetch Latest to retrieve real-time data</span>
         </div>
 
-        <!-- Filter Bar -->
-        <section class="filter-bar" id="filterBar">
-            <div class="filter-bar-inner">
-                <div class="search-wrapper">
-                    <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <input type="text" id="searchInput" class="search-input"
-                        placeholder="Search conferences, topics, locations...">
-                    <kbd class="search-kbd">⌘K</kbd>
-                </div>
-                <div class="filter-group">
-                    <select id="filterRank" class="filter-select">
-                        <option value="all">All Rankings</option>
-                        <option value="A*">CORE A*</option>
-                        <option value="A">CORE A</option>
-                        <option value="Q1">Scimago Q1</option>
-                        <option value="Q2">Scimago Q2</option>
-                        <option value="Q3">Scimago Q3</option>
-                        <option value="Q4">Scimago Q4</option>
-                    </select>
-                    <select id="filterHIndex" class="filter-select">
-                        <option value="all">Any H-Index</option>
-                        <option value="100">H-Index > 100</option>
-                        <option value="50">H-Index > 50</option>
-                        <option value="20">H-Index > 20</option>
-                    </select>
-                    <select id="filterTopic" class="filter-select">
-                        <option value="all">All Topics</option>
-                        <option value="AI/ML">AI / Machine Learning</option>
-                        <option value="Computer Vision">Computer Vision</option>
-                        <option value="NLP">Natural Language Processing</option>
-                        <option value="Data Mining">Data Mining / IR</option>
-                        <option value="Databases">Databases</option>
-                        <option value="Systems">Systems</option>
-                        <option value="Security">Security & Privacy</option>
-                        <option value="Robotics">Robotics</option>
-                        <option value="HCI">Human-Computer Interaction</option>
-                        <option value="Software Engineering">Software Engineering</option>
-                        <option value="Theory">Theory & Algorithms</option>
-                        <option value="Graphics">Graphics & Multimedia</option>
-                        <option value="Bioinformatics">Bioinformatics</option>
-                    </select>
-                    <select id="filterPlatform" class="filter-select">
-                        <option value="all">All Platforms</option>
-                        <option value="OpenReview">OpenReview</option>
-                        <option value="CMT3">CMT3</option>
-                        <option value="EasyChair">EasyChair</option>
-                        <option value="ARR">ARR (ACL Rolling Review)</option>
-                        <option value="HotCRP">HotCRP</option>
-                    </select>
-                    <select id="filterStatus" class="filter-select">
-                        <option value="all">All Status</option>
-                        <option value="open">Open for Submission</option>
-                        <option value="upcoming">Upcoming</option>
-                        <option value="closed">Closed</option>
-                    </select>
-                </div>
-                <div class="filter-actions">
-                    <button class="btn-filter-clear" id="clearFilters">
-                        <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
-                            <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        Clear
-                    </button>
-                    <label class="toggle-label">
-                        <input type="checkbox" id="topTierOnly">
-                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
-                        <span>Top-Tier Only</span>
-                    </label>
-                    <label class="toggle-label">
-                        <input type="checkbox" id="bookmarkedOnly">
-                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
-                        <span>Bookmarked</span>
-                    </label>
-                </div>
-            </div>
-        </section>
-
-        <!-- Main Table -->
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Skeleton Loader -->
-            <div class="skeleton-container" id="skeletonLoader" style="display:none">
-                <div class="skeleton-row" style="--i:0"></div>
-                <div class="skeleton-row" style="--i:1"></div>
-                <div class="skeleton-row" style="--i:2"></div>
-                <div class="skeleton-row" style="--i:3"></div>
-                <div class="skeleton-row" style="--i:4"></div>
-            </div>
+            <div class="explorer-card">
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-row filter-row-top">
+                        <div class="search-wrapper">
+                            <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <input type="text" id="searchInput" class="search-input"
+                                placeholder="Search conferences, topics, locations...">
+                            <kbd class="search-kbd">⌘K</kbd>
+                        </div>
+                        <button class="btn-filter-clear" id="clearFilters">
+                            <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Clear Filters</span>
+                        </button>
+                    </div>
 
-            <div class="table-container" id="tableContainer">
-                <div class="table-scroll">
+                    <div class="filter-row filter-row-bottom">
+                        <div class="filter-group">
+                            <select id="filterRank" class="filter-select">
+                                <option value="all">All Rankings</option>
+                                <option value="A*">CORE A*</option>
+                                <option value="A">CORE A</option>
+                                <option value="Q1">Scimago Q1</option>
+                                <option value="Q2">Scimago Q2</option>
+                                <option value="Q3">Scimago Q3</option>
+                                <option value="Q4">Scimago Q4</option>
+                            </select>
+                            <select id="filterHIndex" class="filter-select">
+                                <option value="all">Any H-Index</option>
+                                <option value="100">H-Index > 100</option>
+                                <option value="50">H-Index > 50</option>
+                                <option value="20">H-Index > 20</option>
+                            </select>
+                            <select id="filterTopic" class="filter-select">
+                                <option value="all">All Topics</option>
+                                <option value="AI/ML">AI / Machine Learning</option>
+                                <option value="Computer Vision">Computer Vision</option>
+                                <option value="NLP">Natural Language Processing</option>
+                                <option value="Data Mining">Data Mining / IR</option>
+                                <option value="Databases">Databases</option>
+                                <option value="Systems">Systems</option>
+                                <option value="Security">Security & Privacy</option>
+                                <option value="Robotics">Robotics</option>
+                                <option value="HCI">Human-Computer Interaction</option>
+                                <option value="Software Engineering">Software Engineering</option>
+                                <option value="Theory">Theory & Algorithms</option>
+                                <option value="Graphics">Graphics & Multimedia</option>
+                                <option value="Bioinformatics">Bioinformatics</option>
+                            </select>
+                            <select id="filterPlatform" class="filter-select">
+                                <option value="all">All Platforms</option>
+                                <option value="OpenReview">OpenReview</option>
+                                <option value="CMT3">CMT3</option>
+                                <option value="EasyChair">EasyChair</option>
+                                <option value="ARR">ARR (ACL Rolling Review)</option>
+                                <option value="HotCRP">HotCRP</option>
+                            </select>
+                            <select id="filterStatus" class="filter-select">
+                                <option value="all">All Status</option>
+                                <option value="open">Open for Submission</option>
+                                <option value="upcoming">Upcoming</option>
+                                <option value="closed">Closed</option>
+                            </select>
+                        </div>
+                        <div class="toggle-group">
+                            <label class="toggle-label">
+                                <input type="checkbox" id="topTierOnly">
+                                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                                <span>Top-Tier</span>
+                            </label>
+                            <label class="toggle-label">
+                                <input type="checkbox" id="bookmarkedOnly">
+                                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                                <span>Bookmarked</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skeleton Loader (Inner) -->
+                <div class="skeleton-container" id="skeletonLoader" style="display:none; border:none; border-radius:0;">
+                    <div class="skeleton-row" style="--i:0"></div>
+                    <div class="skeleton-row" style="--i:1"></div>
+                    <div class="skeleton-row" style="--i:2"></div>
+                </div>
+
+                <div class="table-scroll" id="tableContainer">
                     <table class="conference-table" id="conferenceTable">
                         <thead id="tableHead">
                             <tr>
@@ -274,24 +275,24 @@
                                     </svg>
                                 </th>
                                 <th>Platform</th>
-                                <th>Link</th>
-                                <th>Notes</th>
+                                <th style="width:100px">Link</th>
+                                <th class="td-notes" style="width:140px">Notes</th>
                             </tr>
                         </thead>
                         <tbody id="conferenceBody">
-                            <!-- Dynamically populated -->
+                            <!-- Rows injected by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="empty-state" id="emptyState" style="display:none;">
                 <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
-                    <circle cx="32" cy="32" r="28" stroke="var(--border-bright)" stroke-width="2"
-                        stroke-dasharray="4 4" />
-                    <path d="M24 28h16M24 36h10" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" />
+                    <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" />
+                    <path d="M22 32h20M32 22v20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </svg>
-                <p>No conferences match your filters.</p>
-                <button class="btn-reset" id="resetFilters">Reset Filters</button>
+                <h3>No conferences found</h3>
+                <p>Try adjusting your search or filters to see more results.</p>
+                <button class="btn-primary" id="resetFilters" style="margin-top: 16px;">Reset All Filters</button>
             </div>
         </main>
 
