@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <defs>
+        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#818cf8" />
+            <stop offset="100%" stop-color="#c084fc" />
+        </linearGradient>
+    </defs>
+    <rect width="512" height="512" rx="112" fill="#0b0d14"/>
+
+    <!-- Abstract Graduation Cap -->
+    <path d="M256 128 L416 208 L256 288 L96 208 Z" fill="url(#primaryGrad)"/>
+    <!-- Cap Base -->
+    <path d="M136 238 L136 344 C136 368 256 400 256 400 C256 400 376 368 376 344 L376 238 L256 298 Z" fill="#4f46e5" opacity="0.8"/>
+    <!-- Tassel -->
+    <path d="M416 208 L416 336" stroke="#06b6d4" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="416" cy="354" r="14" fill="#06b6d4" />
+</svg>

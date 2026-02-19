@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2026-02-20
+
+### 🎓 Favicon & Final Polish
+- **Custom Favicon**: Designed and integrated a sleek custom SVG favicon featuring a minimalist scholar cap and target insignia.
+- **Code Review**: Finalized rigorous code review processes confirming the stability of real-time WikiCFP syncing and IndexedDB persistence.
+
 ## [2.1.0] - 2026-02-19
 
 ### 🎨 Branding & UX Consistency
