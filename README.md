@@ -13,6 +13,8 @@
 | Feature | Description |
 |---------|-------------|
 | 🌓 **Premium Themes** | Full Dark & Light mode support with persistent user preferences |
+| 🔢 **Pagination** | New paging system for smooth navigation through hundreds of conferences |
+| 📖 **Journal Support** | Native support for academic journals with dedicated filtering and badges |
 | 📊 **Unified Explorer** | Search, filter, and track conferences in a single cohesive dashboard |
 | 🔄 **WikiCFP Sync** | Real-time fetching from WikiCFP RSS feeds for community conferences |
 | 💾 **Offline Persistence** | Powered by IndexedDB — your data, bookmarks, and notes are always available |

@@ -39,9 +39,17 @@ const BASE_CONFERENCES = [
     { id: 'aciids-2026', name: "Asian Conference on Intelligent Information and Database Systems", acronym: "ACIIDS", topic: "AI/ML", rank: "B", hIndex: 32, scimagoQ: "Q3", location: "TBD", locationFlag: "🌐", confDate: "Apr 2026", abstractDeadline: null, paperDeadline: "2025-10-31", notificationDate: null, platform: "EasyChair", link: "https://aciids.pwr.edu.pl/", isTopTier: false, extendedDeadline: false, dataSource: 'curated' },
     { id: 'icsoft-2026', name: "International Joint Conference on Software Technologies", acronym: "ICSOFT", topic: "Systems", rank: "B", hIndex: 24, scimagoQ: "Q4", location: "TBD", locationFlag: "🌐", confDate: "Jul 2026", abstractDeadline: null, paperDeadline: "2026-03-10", notificationDate: null, platform: "INSTICC", link: "https://icsoft.scitevents.org/", isTopTier: false, extendedDeadline: false, dataSource: 'curated' },
     // ═══════ Systems ═══════
-    { id: 'osdi-2026', name: "USENIX Symposium on Operating Systems Design and Implementation", acronym: "OSDI", topic: "Systems", rank: "A*", hIndex: 95, scimagoQ: "Q1", location: "TBD", locationFlag: "🌐", confDate: "Nov 2026", abstractDeadline: "2026-05-01", paperDeadline: "2026-05-08", notificationDate: "2026-08-10", platform: "HotCRP", link: "https://www.usenix.org/conference/osdi26", isTopTier: true, extendedDeadline: false, dataSource: 'curated' },
-    { id: 'sosp-2027', name: "ACM Symposium on Operating Systems Principles", acronym: "SOSP", topic: "Systems", rank: "A*", hIndex: 75, scimagoQ: "Q1", location: "TBD", locationFlag: "🌐", confDate: "2027 (Biennial)", abstractDeadline: null, paperDeadline: "2027-04-10", notificationDate: "2027-07-01", platform: "HotCRP", link: "https://sigops.org/", isTopTier: true, extendedDeadline: false, dataSource: 'curated' },
-    { id: 'socc-2026', name: "ACM Symposium on Cloud Computing", acronym: "SoCC", topic: "Systems", rank: "A", hIndex: 62, scimagoQ: "Q1", location: "TBD", locationFlag: "🌐", confDate: "Nov 2026", abstractDeadline: null, paperDeadline: "2026-05-14", notificationDate: "2026-07-31", platform: "HotCRP", link: "https://acmsocc.org/2026/", isTopTier: false, extendedDeadline: false, dataSource: 'curated' },
+    { id: 'osdi-2026', name: "USENIX Symposium on Operating Systems Design and Implementation", acronym: "OSDI", topic: "Systems", rank: "A*", hIndex: 95, scimagoQ: "Q1", location: "TBD", locationFlag: "🌐", confDate: "Nov 2026", abstractDeadline: "2026-05-01", paperDeadline: "2026-05-08", notificationDate: "2026-08-10", platform: "HotCRP", link: "https://www.usenix.org/conference/osdi26", isTopTier: true, extendedDeadline: false, dataSource: 'curated', type: 'conference' },
+    { id: 'sosp-2027', name: "ACM Symposium on Operating Systems Principles", acronym: "SOSP", topic: "Systems", rank: "A*", hIndex: 75, scimagoQ: "Q1", location: "TBD", locationFlag: "🌐", confDate: "2027 (Biennial)", abstractDeadline: null, paperDeadline: "2027-04-10", notificationDate: "2027-07-01", platform: "HotCRP", link: "https://sigops.org/", isTopTier: true, extendedDeadline: false, dataSource: 'curated', type: 'conference' },
+    { id: 'socc-2026', name: "ACM Symposium on Cloud Computing", acronym: "SoCC", topic: "Systems", rank: "A", hIndex: 62, scimagoQ: "Q1", location: "TBD", locationFlag: "🌐", confDate: "Nov 2026", abstractDeadline: null, paperDeadline: "2026-05-14", notificationDate: "2026-07-31", platform: "HotCRP", link: "https://acmsocc.org/2026/", isTopTier: false, extendedDeadline: false, dataSource: 'curated', type: 'conference' },
+    // ═══════ Sri Lanka Regional ═══════
+    { id: 'mercon-2026', name: "Moratuwa Engineering Research Conference", acronym: "MERCon", topic: "Systems", rank: "Unranked", hIndex: 12, scimagoQ: "Q4", location: "Moratuwa, Sri Lanka", locationFlag: "🇱🇰", confDate: "Jun 2026", abstractDeadline: null, paperDeadline: "2026-02-15", notificationDate: "2026-04-10", platform: "IEEE", link: "https://mercon.mrt.ac.lk/", isTopTier: false, extendedDeadline: false, dataSource: 'curated', type: 'conference' },
+    { id: 'slaai-2026', name: "Sri Lanka Association for Artificial Intelligence Conference", acronym: "SLAAI", topic: "AI/ML", rank: "Unranked", hIndex: 8, scimagoQ: "Q4", location: "Colombo, Sri Lanka", locationFlag: "🇱🇰", confDate: "Dec 2026", abstractDeadline: null, paperDeadline: "2026-09-01", notificationDate: "2026-10-15", platform: "EasyChair", link: "https://slaai.lk/", isTopTier: false, extendedDeadline: false, dataSource: 'curated', type: 'conference' },
+    { id: 'iciafs-2026', name: "Int. Conference on Information and Automation for Sustainability", acronym: "ICIAfS", topic: "Systems", rank: "Unranked", hIndex: 15, scimagoQ: "Q4", location: "Colombo, Sri Lanka", locationFlag: "🇱🇰", confDate: "Aug 2026", abstractDeadline: null, paperDeadline: "2026-04-20", notificationDate: "2026-06-10", platform: "IEEE", link: "http://www.iciafs.org/", isTopTier: false, extendedDeadline: false, dataSource: 'curated', type: 'conference' },
+    // ═══════ Journals ═══════
+    { id: 'tpami-2026', name: "IEEE Transactions on Pattern Analysis and Machine Intelligence", acronym: "TPAMI", topic: "Computer Vision", rank: "A*", hIndex: 405, scimagoQ: "Q1", location: "Journal", locationFlag: "📖", confDate: "Continuous", abstractDeadline: null, paperDeadline: "2026-12-31", notificationDate: null, platform: "ScholarOne", link: "https://www.computer.org/csdl/journal/tp", isTopTier: true, extendedDeadline: false, dataSource: 'curated', type: 'journal' },
+    { id: 'jmlr-2026', name: "Journal of Machine Learning Research", acronym: "JMLR", topic: "AI/ML", rank: "A*", hIndex: 265, scimagoQ: "Q1", location: "Journal", locationFlag: "📖", confDate: "Continuous", abstractDeadline: null, paperDeadline: "2026-12-31", notificationDate: null, platform: "JMLR Submissions", link: "https://www.jmlr.org/", isTopTier: true, extendedDeadline: false, dataSource: 'curated', type: 'journal' },
+    { id: 'aij-2026', name: "Artificial Intelligence Journal", acronym: "AIJ", topic: "AI/ML", rank: "A*", hIndex: 195, scimagoQ: "Q1", location: "Journal", locationFlag: "📖", confDate: "Continuous", abstractDeadline: null, paperDeadline: "2026-12-31", notificationDate: null, platform: "Editorial Manager", link: "https://www.journals.elsevier.com/artificial-intelligence", isTopTier: true, extendedDeadline: false, dataSource: 'curated', type: 'journal' }
 ];
 
 // ——— App State ———
@@ -49,6 +57,16 @@ let allConferences = [];
 let bookmarkedIds = new Set();
 let notesMap = {};
 let currentSort = { field: 'deadline', direction: 'asc' };
+let currentPage = 1;
+let itemsPerPage = 20;
+
+// ——— Security & Sanitization ———
+function sanitize(str) {
+    if (!str) return '';
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
 
 // ——— Theme ———
 function getTheme() { return localStorage.getItem('ps-theme') || 'dark'; }
@@ -126,6 +144,10 @@ const WIKICFP_FEEDS = [
     'http://www.wikicfp.com/cfp/rss?cat=robotics',
 ];
 
+const JOURNAL_FEEDS = [
+    'https://www.wikicfp.com/cfp/rss?cat=journal'
+];
+
 // Infer topic from title/description
 function inferTopic(text) {
     const t = text.toLowerCase();
@@ -141,6 +163,7 @@ function inferTopic(text) {
     if (t.includes('theory') || t.includes('algorithm') || t.includes('stoc') || t.includes('focs') || t.includes('soda')) return 'Theory';
     if (t.includes('graphics') || t.includes('multimedia') || t.includes('siggraph') || t.includes('eurographics')) return 'Graphics';
     if (t.includes('bioinformatics') || t.includes('computational biology') || t.includes('ismb') || t.includes('recomb')) return 'Bioinformatics';
+    if (t.includes('information science') || t.includes('journal') || t.includes('transactions')) return 'AI/ML';
     return 'AI/ML';
 }
 
@@ -210,6 +233,8 @@ function parseWikiCFPRSS(xmlStr) {
         const confDateMatch = fullText.match(/(?:Conference|Event|When)[^:]*:\s*([^\n|;]{5,40})/i);
         const confDate = confDateMatch ? confDateMatch[1].trim() : year;
 
+        const isJournal = description.toLowerCase().includes('journal') || title.toLowerCase().includes('journal') || title.toLowerCase().includes('transactions');
+
         results.push({
             id: `wikicfp-${acronym.toLowerCase()}-${year}`,
             name: confName || title,
@@ -218,9 +243,9 @@ function parseWikiCFPRSS(xmlStr) {
             rank: 'TBD',
             hIndex: null,
             scimagoQ: null,
-            location,
-            locationFlag: '🌐',
-            confDate,
+            location: isJournal ? 'Journal' : location,
+            locationFlag: isJournal ? '📖' : '🌐',
+            confDate: isJournal ? 'Continuous' : confDate,
             abstractDeadline,
             paperDeadline,
             notificationDate: null,
@@ -229,6 +254,7 @@ function parseWikiCFPRSS(xmlStr) {
             isTopTier: false,
             extendedDeadline: false,
             dataSource: 'wikicfp',
+            type: isJournal ? 'journal' : 'conference'
         });
     }
 
@@ -289,7 +315,8 @@ async function fetchLatestData() {
     let done = 0;
 
     try {
-        for (const feedUrl of WIKICFP_FEEDS) {
+        const allFeeds = [...WIKICFP_FEEDS, ...JOURNAL_FEEDS];
+        for (const feedUrl of allFeeds) {
             try {
                 const proxyUrl = CORS_PROXY + encodeURIComponent(feedUrl);
                 const resp = await fetch(proxyUrl, { signal: (fetchAbortController = new AbortController()).signal });
@@ -303,8 +330,8 @@ async function fetchLatestData() {
                 console.warn('Feed failed:', feedUrl, e);
             }
             done++;
-            const pct = Math.round(5 + (done / WIKICFP_FEEDS.length) * 80);
-            setFetchProgress(pct, `Fetched ${done}/${WIKICFP_FEEDS.length} feeds… (${fetchedConfs.length} entries found)`);
+            const pct = Math.round(5 + (done / allFeeds.length) * 80);
+            setFetchProgress(pct, `Fetched ${done}/${allFeeds.length} feeds… (${fetchedConfs.length} entries found)`);
         }
 
         setFetchProgress(88, 'Merging with curated dataset…');
@@ -393,6 +420,11 @@ function renderConferenceRow(conf) {
     const scimagoHTML = conf.scimagoQ ? `<span class="h-index">Scimago: <span>${conf.scimagoQ}</span></span>` : '';
     const dataSourceHTML = conf.dataSource === 'wikicfp' ? `<span class="source-badge source-live">LIVE</span>` : `<span class="source-badge source-curated">Curated</span>`;
 
+    // Type Badge (Conference vs Journal)
+    const typeBadgeHTML = conf.type === 'journal'
+        ? `<span class="source-badge type-journal" style="background: rgba(139, 92, 246, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3);">Journal</span>`
+        : `<span class="source-badge type-conference" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3);">Conf</span>`;
+
     // Submit button
     const isClosed = earliestDays !== null && earliestDays < 0;
     const btnClass = isClosed ? 'btn-submit btn-submit-closed' : 'btn-submit';
@@ -400,7 +432,7 @@ function renderConferenceRow(conf) {
     const btnTarget = isClosed ? '' : `target="_blank" rel="noopener noreferrer"`;
 
     return `
-        <tr class="${rowClass}" data-id="${conf.id}" data-topic="${conf.topic}" data-rank="${conf.rank}" data-platform="${conf.platform}" data-status="${status}" data-toptier="${conf.isTopTier}">
+        <tr class="${rowClass}" data-id="${conf.id}" data-topic="${sanitize(conf.topic)}" data-rank="${sanitize(conf.rank)}" data-platform="${sanitize(conf.platform)}" data-status="${status}" data-toptier="${conf.isTopTier}">
             <td class="td-bookmark">
                 <button class="btn-star ${isBookmarked ? 'starred' : ''}" data-id="${conf.id}" title="${isBookmarked ? 'Remove bookmark' : 'Bookmark'}" aria-label="Bookmark">
                     ${isBookmarked ? '★' : '☆'}
@@ -410,26 +442,27 @@ function renderConferenceRow(conf) {
                 <div class="conf-name-cell">
                     <div class="conf-name">
                         ${conf.isTopTier ? '<span class="star-icon">⭐</span>' : ''}
-                        <span>${conf.name}</span>
-                        <span class="conf-acronym">${conf.acronym}</span>
+                        <span>${sanitize(conf.name)}</span>
+                        <span class="conf-acronym">${sanitize(conf.acronym)}</span>
                     </div>
                     <div class="conf-meta-row">
-                        <span class="conf-topic">${conf.topic}</span>
+                        ${typeBadgeHTML}
+                        <span class="conf-topic">${sanitize(conf.topic)}</span>
                         ${dataSourceHTML}
                     </div>
                 </div>
             </td>
             <td>
                 <div class="quality-cell">
-                    ${conf.rank && conf.rank !== 'TBD' ? `<span class="rank-badge ${rankClass}">CORE ${conf.rank}</span>` : '<span class="rank-badge rank-tbd">TBD</span>'}
+                    ${conf.rank && conf.rank !== 'TBD' ? `<span class="rank-badge ${rankClass}">CORE ${sanitize(conf.rank)}</span>` : '<span class="rank-badge rank-tbd">TBD</span>'}
                     ${hIndexHTML}
                     ${scimagoHTML}
                 </div>
             </td>
             <td>
                 <div class="location-cell">
-                    <span class="location-place">${conf.locationFlag} ${conf.location}</span>
-                    <span class="location-date">${conf.confDate}</span>
+                    <span class="location-place">${conf.locationFlag} ${sanitize(conf.location)}</span>
+                    <span class="location-date">${sanitize(conf.confDate)}</span>
                 </div>
             </td>
             <td>
@@ -442,14 +475,14 @@ function renderConferenceRow(conf) {
                     ${extendedHTML}
                 </div>
             </td>
-            <td><span class="platform-badge">${conf.platform || '—'}</span></td>
+            <td><span class="platform-badge">${sanitize(conf.platform || '—')}</span></td>
             <td>
                 <a href="${conf.link}" class="${btnClass}" ${btnTarget}>${btnText}</a>
             </td>
             <td class="td-notes">
                 <div class="notes-cell" data-id="${conf.id}">
                     ${note
-            ? `<span class="note-text" title="${note.replace(/"/g, '&quot;')}">${note.length > 40 ? note.slice(0, 40) + '…' : note}</span>`
+            ? `<span class="note-text" title="${sanitize(note)}">${sanitize(note.length > 40 ? note.slice(0, 40) + '…' : note)}</span>`
             : `<span class="note-placeholder">+ Add note</span>`
         }
                 </div>
@@ -462,14 +495,35 @@ function renderTable(data) {
     const tbody = document.getElementById('conferenceBody');
     const emptyState = document.getElementById('emptyState');
     const tableContainer = document.getElementById('tableContainer');
+    const paginationControls = document.getElementById('paginationControls');
 
     if (data.length === 0) {
         tableContainer.style.display = 'none';
         emptyState.style.display = 'flex';
+        paginationControls.style.display = 'none';
     } else {
         tableContainer.style.display = '';
         emptyState.style.display = 'none';
-        tbody.innerHTML = data.map(renderConferenceRow).join('');
+
+        // Pagination
+        const totalPages = Math.ceil(data.length / itemsPerPage);
+        if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+        const startIdx = (currentPage - 1) * itemsPerPage;
+        const endIdx = startIdx + itemsPerPage;
+        const pageData = data.slice(startIdx, endIdx);
+
+        tbody.innerHTML = pageData.map(renderConferenceRow).join('');
+
+        // Pagination Controls Status
+        if (totalPages > 1) {
+            paginationControls.style.display = 'flex';
+            document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById('prevPageBtn').disabled = currentPage === 1;
+            document.getElementById('nextPageBtn').disabled = currentPage === totalPages;
+        } else {
+            paginationControls.style.display = 'none';
+        }
     }
 }
 
@@ -611,6 +665,7 @@ function sortData(data, field, direction) {
 // ——— Filtering ———
 function getFilteredData() {
     const search = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+    const typeFilter = document.getElementById('filterType').value;
     const rankFilter = document.getElementById('filterRank').value;
     const hIndexFilter = document.getElementById('filterHIndex').value;
     const topicFilter = document.getElementById('filterTopic').value;
@@ -620,8 +675,12 @@ function getFilteredData() {
     const bookmarkedOnly = document.getElementById('bookmarkedOnly').checked;
 
     let filtered = allConferences.filter(conf => {
+        const confType = conf.type || 'conference';
+
+        if (typeFilter !== 'all' && confType !== typeFilter) return false;
+
         if (search) {
-            const haystack = `${conf.name} ${conf.acronym} ${conf.topic} ${conf.location} ${conf.platform}`.toLowerCase();
+            const haystack = `${conf.name} ${conf.acronym} ${conf.topic} ${conf.location} ${conf.platform} ${confType}`.toLowerCase();
             if (!haystack.includes(search)) return false;
         }
         if (rankFilter !== 'all') {
@@ -652,7 +711,8 @@ function getFilteredData() {
     return sortData(filtered, currentSort.field, currentSort.direction);
 }
 
-function applyFilters() {
+function applyFilters(resetPage = true) {
+    if (resetPage !== false) currentPage = 1;
     const data = getFilteredData();
     renderTable(data);
     updateStats(data);
@@ -793,9 +853,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         applyFilters();
     });
 
-    // Ranking/Topic/Platform/Status/H-Index changes
-    ['filterRank', 'filterTopic', 'filterPlatform', 'filterStatus', 'filterHIndex'].forEach(id => {
+    // Ranking/Topic/Platform/Status/H-Index/Type changes
+    ['filterType', 'filterRank', 'filterTopic', 'filterPlatform', 'filterStatus', 'filterHIndex'].forEach(id => {
         document.getElementById(id).addEventListener('change', applyFilters);
+    });
+
+    // Pagination buttons
+    document.getElementById('prevPageBtn').addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            applyFilters(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
+    document.getElementById('nextPageBtn').addEventListener('click', () => {
+        currentPage++;
+        applyFilters(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // Bookmarks panel

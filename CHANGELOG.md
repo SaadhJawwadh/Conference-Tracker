@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2026-02-20
+
+### 🔢 Pagination & Academic Journals
+- **Dynamic Pagination**: Implemented a robust paging system with 20 items per page, smooth scroll-to-top, and state preservation.
+- **Academic Journals Integrated**: Added top-tier journals (TPAMI, JMLR, AIJ) to the baseline and introduced a "Type" filter.
+- **Security Audit**: Implemented HTML sanitization across all renderer functions to prevent XSS from untrusted external data.
+- **Mobile Fluidity**: Comprehensive CSS overhaul for mobile and tablet devices. The UI now wraps beautifully on all screen sizes (375px+).
+- **Bug Fixes**: Corrected critical JavaScript syntax errors in the fetch logic and resolved HTML tag nesting issues.
+
 ## [2.2.0] - 2026-02-20
 
 ### 🎓 Favicon & Final Polish
