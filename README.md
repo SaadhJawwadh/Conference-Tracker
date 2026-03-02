@@ -58,24 +58,29 @@ php -S localhost:8080
 conference-tracker/
 ├── index.html          # App shell & layout
 ├── styles.css          # Dark/light theme + responsive CSS
-├── app.js              # Conference data, filtering, sorting, fetching
+├── app.js              # UI logic, filtering, sorting
 ├── db.js               # IndexedDB persistence layer (bookmarks, notes, cache)
+├── conferences.json    # Aggregated conference data (auto-generated)
+├── scripts/
+│   └── fetch-data.js   # Node.js scraper for WikiCFP
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml  # GitHub Pages auto-deploy workflow
+│       └── deploy.yml  # GitHub Actions: Daily fetch + Deploy
 ├── README.md
 └── LICENSE
 ```
 
 ---
 
-## 🔄 Real-time Data Fetching
+## 🔄 Automated Data Pipeline
 
-Click **Fetch Latest** in the header to:
-1. Pull from 6 WikiCFP RSS category feeds via `api.allorigins.win` (free CORS proxy)
-2. Parse abstracts, paper deadlines, and locations from RSS descriptions
-3. Merge results with the curated 22-conference base dataset
-4. Save everything to IndexedDB for offline access
+Publication Scout maintains a fresh dataset without taxing user client devices:
+
+1. **Daily Automation**: A GitHub Action runs `scripts/fetch-data.js` every 24 hours.
+2. **Scraping WikiCFP**: It parses 6 WikiCFP RSS category feeds and scrapes HTML for specific conference locations and deadlines.
+3. **Merging Data**: It merges the scraped data with the highly curated 22-conference base dataset.
+4. **Static Serving**: The aggregated data is saved as a static `conferences.json` file.
+5. **Client-Side**: The web app's "Fetch Latest" button simple downloads this pre-computed `conferences.json` and syncs it securely to the local IndexedDB.
 
 > **Note:** WikiCFP data quality varies. The curated base dataset is always authoritative for the top-22 tracked conferences. Fetched data supplements with additional community-submitted CFPs.
 
@@ -101,11 +106,11 @@ All curated conferences meet at least one of:
 
 ## 🛠 Tech Stack
 
-Pure HTML + CSS + JavaScript — no frameworks, no bundler, no npm.
+Pure HTML + CSS + JavaScript — no frameworks, no bundler. Data fetching script utilizes Node.js.
 
 - **Fonts**: Inter + JetBrains Mono (Google Fonts)
-- **Storage**: IndexedDB via `db.js` wrapper
-- **Live Data**: WikiCFP RSS → `api.allorigins.win` CORS proxy → `DOMParser`
+- **Data Pipeline**: Pre-computed `conferences.json` built daily via Node.js + GitHub Actions
+- **Storage**: IndexedDB via `db.js` wrapper for real offline-first caching
 - **Deploy**: GitHub Actions static site deployment
 
 ---

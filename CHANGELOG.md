@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.3.0] - 2026-02-20
+## [2.4.0] - 2026-03-02
+
+### 🤖 Automated Data Pipeline
+- **GitHub Actions Integration**: Migrated from client-side scraping to an automated backend pipeline. A Node.js scraper now runs daily on GitHub Actions to parse WikiCFP and build a static `conferences.json` artifact.
+- **Improved Reliability & Privacy**: Client devices no longer make CORS proxy requests to external RSS feeds. The "Fetch Latest" button now securely downloads the pre-aggregated `conferences.json` directly from the hosting server.
+
+### 📱 Responsive UI Overhaul
+- **Mobile Card Layout**: Re-engineered the mobile and tablet views. On screens ≤900px, the traditional table transforms into vertically stacked "cards" with internal labels (SCORE, WHERE, DUE, SOURCE, LINK) for superior readability.
+- **Desktop Table Accessibility**: Added `overflow-x: auto` to ensure all 7 columns (including Notes) are fully accessible on narrower desktop windows without clipping.
+- **Sticky Header Fix**: Resolved an issue where the sticky table header lost its background opacity and overlapped improperly. The table header now perfectly tracks the top of its scroll container.
+- **Header Geometry**: Adjusted top-level controls (Search, Add Custom, Fetch, Dark Mode) to intelligently wrap and center on mobile, preventing overlap.
+
+
 
 ### 🔢 Pagination & Academic Journals
 - **Dynamic Pagination**: Implemented a robust paging system with 20 items per page, smooth scroll-to-top, and state preservation.
