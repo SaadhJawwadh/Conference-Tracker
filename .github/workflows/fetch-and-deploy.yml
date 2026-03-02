@@ -1,0 +1,41 @@
+name: Fetch Conference Data
+
+on:
+  schedule:
+    - cron: '0 0 */3 * *' # Every 3 days at midnight UTC
+  workflow_dispatch: # Allow manual triggers
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Need to push commits
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: ./scripts
+        # Using a dummy package.json since there isn't one natively at the root
+        run: |
+          npm init -y
+          npm install fast-xml-parser node-fetch@2
+
+      - name: Fetch Latest Conference Data
+        working-directory: ./scripts
+        run: node fetch-data.js
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add conferences.json
+          # Only commit if there are changes
+          git diff --staged --quiet || git commit -m "chore: fetch latest conference data [skip ci]"
+          git push

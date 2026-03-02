@@ -903,11 +903,12 @@ body {
 
 /* ——— Table ——— */
 .table-scroll {
-    /* Critical: No overflow here to allow viewport-relative sticky behavior */
     position: relative;
     background: var(--bg-surface);
     border-bottom-left-radius: var(--radius-lg);
     border-bottom-right-radius: var(--radius-lg);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .conference-table {
@@ -920,13 +921,12 @@ body {
 
 .conference-table thead {
     position: sticky;
-    top: var(--header-h, 64px);
+    top: 0;
     z-index: 100;
 }
 
 .conference-table th {
     background: var(--bg-surface-2);
-    /* Fully opaque */
     padding: 14px 16px;
     text-align: left;
     font-size: 0.72rem;
@@ -935,9 +935,10 @@ body {
     letter-spacing: 0.1em;
     color: var(--text-muted);
     border-bottom: 2px solid var(--border);
-    /* Slightly thicker border for separation */
     white-space: nowrap;
     transition: background 0.2s, color 0.2s;
+    /* Ensure no bleed-through on sticky scroll */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* Fix Conference Column specifically */
@@ -1155,23 +1156,8 @@ body {
     }
 }
 
+/* Additional 768px responsive fixes (non-duplicated rules) */
 @media (max-width: 768px) {
-    .header-inner {
-        padding: 12px 16px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-    }
-
-    .header-controls {
-        align-self: flex-end;
-    }
-
-    .stats-bar {
-        padding: 0 16px;
-        gap: 12px;
-    }
-
     .stat-card {
         padding: 14px;
     }
@@ -1180,19 +1166,11 @@ body {
         padding: 0 16px 40px;
     }
 
-    .filter-section {
-        padding: 16px;
-    }
-
     .filter-row-bottom {
         flex-direction: column;
     }
 
     .filter-select {
-        width: 100%;
-    }
-
-    .bookmarks-panel {
         width: 100%;
     }
 
@@ -1205,32 +1183,6 @@ body {
 @media (max-width: 480px) {
     .logo-title {
         font-size: 1.1rem;
-    }
-
-    .stats-bar {
-        grid-template-columns: 1fr;
-    }
-
-    .header-controls {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .btn-fetch span,
-    .btn-bookmarks span {
-        display: none;
-    }
-
-    .btn-fetch,
-    .btn-bookmarks {
-        padding: 10px;
-    }
-
-    .table-scroll {
-        margin: 0 -16px;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
     }
 }
 
@@ -1891,30 +1843,33 @@ body {
     .header-inner {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 10px;
     }
 
     .logo-group {
         width: 100%;
         justify-content: center;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
     }
 
     .header-controls {
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 8px;
+    }
+
+    .header-meta {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .header-actions {
+        justify-content: center;
     }
 
     .stats-bar {
         grid-template-columns: 1fr 1fr;
-    }
-
-    .table-scroll {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        /* Padding to prevent shadow clipping on scroll */
-        padding-bottom: 8px;
     }
 
     .fetch-label {
@@ -1924,13 +1879,123 @@ body {
     .bookmarks-panel {
         width: 100%;
     }
+}
 
-    .td-notes {
+/* ——— Card Layout for screens narrower than table min-width ——— */
+@media (max-width: 900px) {
+    .conference-table {
+        min-width: unset;
+    }
+
+    .conference-table thead {
         display: none;
     }
 
-    .conference-table th:first-child+th+th+th+th+th+th {
-        display: none;
+    .conference-table tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .conference-table tbody tr {
+        display: block;
+        background: var(--bg-surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 16px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .conference-table tbody tr:hover {
+        border-color: var(--border-bright);
+        box-shadow: var(--shadow-sm);
+    }
+
+    /* All cells become block */
+    .conference-table tbody tr td {
+        display: block;
+        padding: 0;
+        text-align: left;
+    }
+
+    /* Bookmark - inline with name */
+    .conference-table tbody tr td.td-bookmark {
+        display: inline-block;
+        width: auto;
+        vertical-align: top;
+        padding: 0 8px 0 0;
+    }
+
+    /* Conference name */
+    .conference-table tbody tr td:nth-child(2) {
+        display: inline-block;
+        width: calc(100% - 40px);
+        vertical-align: top;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 8px;
+    }
+
+    /* Quality, Location, Deadline, Platform, Link — each with label */
+    .conference-table tbody tr td:nth-child(3),
+    .conference-table tbody tr td:nth-child(4),
+    .conference-table tbody tr td:nth-child(5),
+    .conference-table tbody tr td:nth-child(6),
+    .conference-table tbody tr td:nth-child(7) {
+        padding: 6px 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .conference-table tbody tr td:nth-child(3)::before,
+    .conference-table tbody tr td:nth-child(4)::before,
+    .conference-table tbody tr td:nth-child(5)::before,
+    .conference-table tbody tr td:nth-child(6)::before,
+    .conference-table tbody tr td:nth-child(7)::before {
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        min-width: 68px;
+        flex-shrink: 0;
+        padding-top: 4px;
+    }
+
+    .conference-table tbody tr td:nth-child(3)::before {
+        content: 'SCORE';
+    }
+
+    .conference-table tbody tr td:nth-child(4)::before {
+        content: 'WHERE';
+    }
+
+    .conference-table tbody tr td:nth-child(5)::before {
+        content: 'DUE';
+    }
+
+    .conference-table tbody tr td:nth-child(6)::before {
+        content: 'SOURCE';
+    }
+
+    .conference-table tbody tr td:nth-child(7)::before {
+        content: 'LINK';
+    }
+
+    /* Notes - hide on card view */
+    .td-notes {
+        display: none !important;
+    }
+
+    /* Override row-tier borders for cards */
+    .conference-table tbody tr.row-top-tier {
+        border-left: 3px solid var(--accent-cyan);
+    }
+
+    .conference-table tbody tr.row-high-rank {
+        border-left: 3px solid var(--accent-purple);
     }
 }
 
@@ -1958,7 +2023,11 @@ body {
         gap: 12px;
     }
 
-    .td-notes {
+    .btn-fetch span.fetch-label {
         display: none;
+    }
+
+    .header-controls {
+        gap: 6px;
     }
 }

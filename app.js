@@ -130,136 +130,7 @@ function getEarliestDeadline(conf) {
     });
 }
 
-// ——— Real-time Fetching ———
-// Sources: WikiCFP RSS (via cors-anywhere proxy or allorigins) + CORE Portal scrape
-const CORS_PROXY = 'https://api.allorigins.win/get?url=';
-const WIKICFP_FEEDS = [
-    'http://www.wikicfp.com/cfp/rss?cat=computer+science',
-    'http://www.wikicfp.com/cfp/rss?cat=artificial+intelligence',
-    'http://www.wikicfp.com/cfp/rss?cat=machine+learning',
-    'http://www.wikicfp.com/cfp/rss?cat=computer+vision',
-    'http://www.wikicfp.com/cfp/rss?cat=natural+language+processing',
-    'http://www.wikicfp.com/cfp/rss?cat=data+mining',
-    'http://www.wikicfp.com/cfp/rss?cat=security',
-    'http://www.wikicfp.com/cfp/rss?cat=robotics',
-];
-
-const JOURNAL_FEEDS = [
-    'https://www.wikicfp.com/cfp/rss?cat=journal'
-];
-
-// Infer topic from title/description
-function inferTopic(text) {
-    const t = text.toLowerCase();
-    if (t.includes('vision') || t.includes('image') || t.includes('cvpr') || t.includes('iccv') || t.includes('eccv')) return 'Computer Vision';
-    if (t.includes('natural language') || t.includes('nlp') || t.includes('text') || t.includes('acl') || t.includes('emnlp') || t.includes('naacl')) return 'NLP';
-    if (t.includes('data mining') || t.includes('knowledge discovery') || t.includes('information retrieval') || t.includes('kdd') || t.includes('sigir') || t.includes('wsdm')) return 'Data Mining';
-    if (t.includes('database') || t.includes('data management') || t.includes('sigmod') || t.includes('vldb')) return 'Databases';
-    if (t.includes('operating system') || t.includes('network') || t.includes('distributed') || t.includes('cloud') || t.includes('osdi') || t.includes('sosp')) return 'Systems';
-    if (t.includes('security') || t.includes('privacy') || t.includes('cryptography') || t.includes('ccs') || t.includes('uss') || t.includes('ndss')) return 'Security';
-    if (t.includes('robotics') || t.includes('automation') || t.includes('icra') || t.includes('iros')) return 'Robotics';
-    if (t.includes('hci') || t.includes('human-computer') || t.includes('interaction') || t.includes('chi') || t.includes('uist')) return 'HCI';
-    if (t.includes('software engineering') || t.includes('icse') || t.includes('fse') || t.includes('ase')) return 'Software Engineering';
-    if (t.includes('theory') || t.includes('algorithm') || t.includes('stoc') || t.includes('focs') || t.includes('soda')) return 'Theory';
-    if (t.includes('graphics') || t.includes('multimedia') || t.includes('siggraph') || t.includes('eurographics')) return 'Graphics';
-    if (t.includes('bioinformatics') || t.includes('computational biology') || t.includes('ismb') || t.includes('recomb')) return 'Bioinformatics';
-    if (t.includes('information science') || t.includes('journal') || t.includes('transactions')) return 'AI/ML';
-    return 'AI/ML';
-}
-
-// Parse WikiCFP RSS XML
-function parseWikiCFPRSS(xmlStr) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xmlStr, 'text/xml');
-    const items = Array.from(doc.querySelectorAll('item'));
-    const results = [];
-
-    for (const item of items) {
-        const title = item.querySelector('title')?.textContent?.trim() || '';
-        const description = item.querySelector('description')?.textContent?.trim() || '';
-        const link = item.querySelector('link')?.textContent?.trim() || '';
-
-        // Extract acronym from title (e.g., "ICML 2026 : International Conference...")
-        const acronymMatch = title.match(/^([A-Z][A-Z0-9\-]{1,8})\s+20\d{2}/);
-        if (!acronymMatch) continue;
-        const acronym = acronymMatch[1];
-
-        // Extract year
-        const yearMatch = title.match(/20(\d{2})/);
-        const year = yearMatch ? '20' + yearMatch[1] : '2026';
-
-        // Try to extract deadline from description
-        // WikiCFP descriptions include structured text like "Paper Submission: ... 2026-03-01"
-        const deadlinePatterns = [
-            /(?:submission|paper|abstract)[^:]*:\s*(\w+\s+\d+,?\s*\d{4})/i,
-            /(\d{4}-\d{2}-\d{2})/,
-        ];
-        let paperDeadline = null;
-        let abstractDeadline = null;
-
-        // Full text from description
-        const fullText = description.replace(/<[^>]+>/g, ' ');
-
-        // Try to find Abstract deadline
-        const abstractMatch = fullText.match(/Abstract[^:]*:\s*(\w[^;|\n<]{3,30})/i);
-        if (abstractMatch) {
-            const d = parseDateFromText(abstractMatch[1]);
-            if (d) abstractDeadline = d;
-        }
-
-        // Try to find Paper/Full paper deadline
-        const paperMatch = fullText.match(/(?:Full Paper|Paper|Submission)[^:]*:\s*(\w[^;|\n<]{3,30})/i);
-        if (paperMatch) {
-            const d = parseDateFromText(paperMatch[1]);
-            if (d) paperDeadline = d;
-        }
-
-        // If no structured deadline found, try bare ISO date
-        if (!paperDeadline) {
-            const isoMatch = fullText.match(/(\d{4}-\d{2}-\d{2})/);
-            if (isoMatch) paperDeadline = isoMatch[1];
-        }
-
-        if (!paperDeadline) continue; // skip if no deadline found
-
-        const topic = inferTopic(title + ' ' + fullText);
-        const confName = title.replace(/^[A-Z0-9\-]+\s+20\d{2}\s*:\s*/, '').trim();
-
-        // Extract location from description
-        const locationMatch = fullText.match(/(?:Location|Venue|City)[^:]*:\s*([^\n|;]{5,50})/i);
-        const location = locationMatch ? locationMatch[1].trim() : 'TBD';
-
-        // Extract conference date
-        const confDateMatch = fullText.match(/(?:Conference|Event|When)[^:]*:\s*([^\n|;]{5,40})/i);
-        const confDate = confDateMatch ? confDateMatch[1].trim() : year;
-
-        const isJournal = description.toLowerCase().includes('journal') || title.toLowerCase().includes('journal') || title.toLowerCase().includes('transactions');
-
-        results.push({
-            id: `wikicfp-${acronym.toLowerCase()}-${year}`,
-            name: confName || title,
-            acronym,
-            topic,
-            rank: 'TBD',
-            hIndex: null,
-            scimagoQ: null,
-            location: isJournal ? 'Journal' : location,
-            locationFlag: isJournal ? '📖' : '🌐',
-            confDate: isJournal ? 'Continuous' : confDate,
-            abstractDeadline,
-            paperDeadline,
-            notificationDate: null,
-            platform: 'TBD',
-            link: link || `http://www.wikicfp.com/cfp/`,
-            isTopTier: false,
-            extendedDeadline: false,
-            dataSource: 'wikicfp',
-            type: isJournal ? 'journal' : 'conference'
-        });
-    }
-
-    return results;
-}
+// Real-time fetching removed. Client now fetches the static JSON generated by GitHub Actions.
 
 function parseDateFromText(text) {
     if (!text) return null;
@@ -303,61 +174,48 @@ function setFetchProgress(pct, text) {
     txt.textContent = text;
 }
 
-async function fetchLatestData() {
+async function fetchLatestData(isSilent = false) {
     const btn = document.getElementById('fetchBtn');
-    btn.classList.add('fetching');
-    btn.querySelector('.fetch-label').textContent = 'Fetching…';
-    btn.disabled = true;
 
-    setFetchProgress(5, 'Connecting to WikiCFP RSS feeds…');
-
-    const fetchedConfs = [];
-    let done = 0;
+    if (!isSilent) {
+        btn.classList.add('fetching');
+        btn.querySelector('.fetch-label').textContent = 'Fetching…';
+        btn.disabled = true;
+        setFetchProgress(50, 'Fetching latest data from server…');
+    }
 
     try {
-        const allFeeds = [...WIKICFP_FEEDS, ...JOURNAL_FEEDS];
-        for (const feedUrl of allFeeds) {
-            try {
-                const proxyUrl = CORS_PROXY + encodeURIComponent(feedUrl);
-                const resp = await fetch(proxyUrl, { signal: (fetchAbortController = new AbortController()).signal });
-                if (resp.ok) {
-                    const json = await resp.json();
-                    const contents = json.contents || '';
-                    const parsed = parseWikiCFPRSS(contents);
-                    fetchedConfs.push(...parsed);
-                }
-            } catch (e) {
-                console.warn('Feed failed:', feedUrl, e);
-            }
-            done++;
-            const pct = Math.round(5 + (done / allFeeds.length) * 80);
-            setFetchProgress(pct, `Fetched ${done}/${allFeeds.length} feeds… (${fetchedConfs.length} entries found)`);
-        }
+        const resp = await fetch('conferences.json');
+        if (!resp.ok) throw new Error('Failed to fetch conferences.json');
 
-        setFetchProgress(88, 'Merging with curated dataset…');
-        const merged = mergeConferences(BASE_CONFERENCES, fetchedConfs);
+        const payload = await resp.json();
+        const merged = payload.data || [];
 
-        setFetchProgress(93, 'Persisting to local database…');
+        if (!isSilent) setFetchProgress(90, 'Persisting to local database…');
         await DB.saveConferences(merged);
-        const now = new Date().toISOString();
+        const now = payload.metadata?.lastSync || new Date().toISOString();
         await DB.setMeta('lastSync', now);
         await DB.setMeta('lastSyncCount', merged.length);
 
-        setFetchProgress(100, `Saved ${merged.length} conferences!`);
+        if (!isSilent) setFetchProgress(100, `Loaded ${merged.length} conferences!`);
         allConferences = merged;
 
-        setTimeout(() => setFetchProgress(null, ''), 1500);
+        if (!isSilent) setTimeout(() => setFetchProgress(null, ''), 1500);
         updateLastSyncDisplay(now, merged.length);
         applyFilters();
-        showToast(`✅ Fetched ${fetchedConfs.length} live entries + ${BASE_CONFERENCES.length} curated. ${merged.length} total.`);
+        if (!isSilent) showToast(`✅ Successfully loaded latest data.`);
     } catch (err) {
-        setFetchProgress(null, '');
-        showToast('⚠️ Fetch failed. Showing locally stored data.', 'error');
+        if (!isSilent) {
+            setFetchProgress(null, '');
+            showToast('⚠️ Fetch failed. Showing locally stored data.', 'error');
+        }
         console.error('Fetch error:', err);
     } finally {
-        btn.classList.remove('fetching');
-        btn.querySelector('.fetch-label').textContent = 'Fetch Latest';
-        btn.disabled = false;
+        if (!isSilent) {
+            btn.classList.remove('fetching');
+            btn.querySelector('.fetch-label').textContent = 'Fetch Latest';
+            btn.disabled = false;
+        }
     }
 }
 
@@ -780,23 +638,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     bookmarkedIds = new Set(bookmarkIds);
     notesMap = notes;
 
-    // Use stored data if available, else use base curated data
+    // Use stored data if available, else fetch logic base
     if (storedConfs && storedConfs.length > 0) {
         allConferences = storedConfs;
+        if (lastSync) updateLastSyncDisplay(lastSync, lastCount || allConferences.length);
+        applyFilters();
+
+        // Background fetch for updates when it exists, silently updating UI if needed
+        // but normally handled by manual "Fetch Latest" clicks. Let's just fetch latest JSON on load.
+        fetchLatestData(true);
     } else {
         allConferences = BASE_CONFERENCES;
-        // Save initial base data
         await DB.saveConferences(BASE_CONFERENCES);
+        applyFilters();
+        // Immediately fetch the generated conferences if possible
+        fetchLatestData(true);
     }
-
-    if (lastSync) updateLastSyncDisplay(lastSync, lastCount || allConferences.length);
-    else {
-        document.getElementById('lastSyncText').textContent =
-            `Showing ${allConferences.length} curated conferences. Press "Fetch Latest" for real-time data.`;
-    }
-
-    // Initial render
-    applyFilters();
 
     // ——— Dynamic Header Height (keeps sticky thead flush below site header) ———
     const headerEl = document.getElementById('header');
