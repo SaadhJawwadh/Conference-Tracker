@@ -1,23 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-    <!-- Comic Starburst Backplate -->
-    <polygon points="60,4 72,22 93,12 91,34 114,36 100,54 116,72 95,79 101,100 79,97 72,116 56,101 37,114 36,92 14,93 24,72 6,60 24,46 15,25 37,28 42,7"
-             fill="#FFD600" stroke="#111111" stroke-width="5" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <!-- Hard Comic Offset Shadow -->
+    <rect x="14" y="14" width="104" height="104" rx="24" fill="#111111"/>
+    <!-- Canary Yellow Comic Frame -->
+    <rect x="8" y="8" width="104" height="104" rx="24" fill="#FFD600" stroke="#111111" stroke-width="6"/>
 
-    <!-- Graduation Cap Base -->
-    <path d="M36 58 L36 78 C36 84 60 91 60 91 C60 91 84 84 84 78 L84 58 L60 70 Z"
-          fill="#1D4ED8" stroke="#111111" stroke-width="5" stroke-linejoin="round"/>
+    <!-- Inner Cream Comic Panel -->
+    <rect x="18" y="18" width="84" height="84" rx="16" fill="#FFFDF2" stroke="#111111" stroke-width="4"/>
 
-    <!-- Graduation Cap Top -->
-    <path d="M60 32 L96 50 L60 68 L24 50 Z"
-          fill="#2563EB" stroke="#111111" stroke-width="5" stroke-linejoin="round"/>
+    <!-- Magnifying / Scout Lens Handle -->
+    <path d="M77 77 L94 94" stroke="#111111" stroke-width="12" stroke-linecap="round"/>
+    <path d="M77 77 L94 94" stroke="#FF3B30" stroke-width="6" stroke-linecap="round"/>
 
-    <!-- White Comic Shine -->
-    <path d="M44 48 L60 40 L70 45" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Scout Lens Ring -->
+    <circle cx="56" cy="56" r="30" fill="#E0F2FE" stroke="#111111" stroke-width="5.5"/>
 
-    <!-- Tassel -->
-    <path d="M90 53 L90 77" stroke="#FF3B30" stroke-width="5" stroke-linecap="round"/>
-    <circle cx="90" cy="81" r="6" fill="#FF3B30" stroke="#111111" stroke-width="3.5"/>
+    <!-- Graduation Cap Inside Lens -->
+    <path d="M40 58 L40 69 C40 73 56 78 56 78 C56 78 72 73 72 69 L72 58 L56 66 Z"
+          fill="#1D4ED8" stroke="#111111" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M56 38 L80 50 L56 62 L32 50 Z"
+          fill="#2563EB" stroke="#111111" stroke-width="4" stroke-linejoin="round"/>
 
-    <!-- Scout Target / Sparkle -->
-    <circle cx="60" cy="50" r="4.5" fill="#FFD600" stroke="#111111" stroke-width="3"/>
+    <!-- Cap Shine & Tassel -->
+    <path d="M45 49 L56 44 L63 47" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M75 52 L75 68" stroke="#FF3B30" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="75" cy="70" r="3.5" fill="#FF3B30" stroke="#111111" stroke-width="2.5"/>
+
+    <!-- Top-Right Comic Star Sparkle -->
+    <path d="M90 26 L92 31 L97 33 L92 35 L90 40 L88 35 L83 33 L88 31 Z"
+          fill="#FF3B30" stroke="#111111" stroke-width="2" stroke-linejoin="round"/>
 </svg>
