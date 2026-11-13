@@ -1,15 +1,20 @@
-name: Fetch Conference Data
+name: Weekly Fetch & Deploy Conference Data
 
 on:
   schedule:
-    - cron: '0 0 */3 * *' # Every 3 days at midnight UTC
-  workflow_dispatch: # Allow manual triggers
+    - cron: '0 0 * * 1' # Every Monday at 00:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   fetch-data:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # Need to push commits
+    outputs:
+      updated: ${{ steps.commit.outputs.updated }}
 
     steps:
       - name: Checkout repository
@@ -22,20 +27,31 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./scripts
-        # Using a dummy package.json since there isn't one natively at the root
-        run: |
-          npm init -y
-          npm install fast-xml-parser node-fetch@2
+        run: npm ci
 
-      - name: Fetch Latest Conference Data
+      - name: Fetch Latest High-Quality Conference Data
         working-directory: ./scripts
         run: node fetch-data.js
 
       - name: Commit and push changes
+        id: commit
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add conferences.json
-          # Only commit if there are changes
-          git diff --staged --quiet || git commit -m "chore: fetch latest conference data [skip ci]"
-          git push
+          if git diff --staged --quiet; then
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore: weekly fetch high-quality conference data"
+            git push
+            echo "updated=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: fetch-data
+    if: needs.fetch-data.outputs.updated == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/deploy.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

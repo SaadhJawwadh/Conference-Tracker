@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0] - 2026-11-13
+
+### 🎨 Classic Comic Book ("Sunday Funnies") Redesign
+- **Newsprint & Halftone Theme**: Redesigned the UI in a Classic Comic Book aesthetic with warm newsprint cream (`#fffdf2`), Ben-Day halftone dot background, `3px` black ink borders, hard offset shadows, `Bangers` display typography, speech-bubble stat cards with a `ZAP!` urgent burst badge, and a matching **Midnight Comic Noir** dark mode.
+- **Mobile Comic Cards**: On screens `≤ 768px`, conference rows transform into stacked comic-book cards with `data-label` badges and zero horizontal overflow.
+
+### 🔄 Weekly High-Quality Data Pipeline & CI/CD
+- **Multi-Source Weekly Sync**: Updated `fetch-and-deploy.yml` to run weekly (`0 0 * * 1`) and automatically trigger `deploy.yml` so GitHub Pages redeploys when `conferences.json` updates.
+- **Strict Quality Gate & Deduplication**: Added `ccfddl` + WikiCFP (`https://`) fetching, cross-feed deduplication, and enrichment via `data/quality-lookup.json`, strictly keeping vetted venues (`CORE A*/A/B`, `Scimago Q1/Q2`, or `H-Index > 18`) plus `data/curated.json`.
+- **Scoped Pages Artifact**: `deploy.yml` now stages only public web assets (`_site/`), excluding `.git/`, `scripts/`, and internal docs.
+
+### ✨ Researcher Features, Security & ES Modules
+- **Security & Reliability**: Fixed XSS vectors in Bookmarks/Notes, enforced `http:`/`https:` URL validation (`safeUrl`), cleared stale IndexedDB records on sync, and unified live deadline calculations.
+- **New Productivity Tools**: Added **Hide Closed** (on by default), `H-Index > 18` / `CORE B` / `Unranked` filters, `.ics` & Google Calendar export per row, URL-synced filters, page-size selector (`20 / 50 / 100 / All`), JSON Bookmarks/Notes backup & restore, and full keyboard/ARIA accessibility.
+- **Zero-Build ES Modules**: Refactored `app.js` into modular `js/*.js` files (`state.js`, `utils.js`, `calendar.js`, `filters.js`, `render.js`, `main.js`).
+
 ## [2.4.0] - 2026-03-02
 
 ### 🤖 Automated Data Pipeline

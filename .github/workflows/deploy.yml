@@ -5,16 +5,14 @@ on:
     branches: [main, master]
     tags:
       - 'v*'
-  # Allow manual trigger from the Actions tab
+  workflow_call:
   workflow_dispatch:
 
-# Grant GITHUB_TOKEN permissions to deploy to GitHub Pages
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -32,11 +30,17 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Stage public site files
+        run: |
+          mkdir -p _site/js _site/data
+          cp index.html styles.css db.js conferences.json favicon.svg _site/
+          cp -r js/* _site/js/
+          cp -r data/* _site/data/
+
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the entire repo root (all static files)
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

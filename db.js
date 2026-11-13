@@ -55,6 +55,7 @@ const DB = {
     async saveConferences(list) {
         await openDB();
         const store = tx('conferences', 'readwrite');
+        store.clear();
         for (const c of list) {
             store.put(c);
         }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 
     <head>
         <meta charset="UTF-8">
@@ -10,29 +10,25 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="styles.css?v=2">
+        <link rel="stylesheet" href="styles.css?v=3">
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
     </head>
 
     <body>
-        <!-- Animated Background -->
+        <!-- Comic Halftone Background -->
         <div class="bg-grid"></div>
-        <div class="bg-glow bg-glow-1"></div>
-        <div class="bg-glow bg-glow-2"></div>
-        <div class="bg-glow bg-glow-3"></div>
 
         <!-- Header -->
         <header class="header" id="header">
             <div class="header-inner">
                 <div class="logo-group">
                     <div class="logo-icon">
-                        <img src="favicon.svg" alt="Publication Scout Logo"
-                            style="width: 32px; height: 32px; filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5)); border-radius: 8px;">
+                        <img src="favicon.svg" alt="Publication Scout Logo" class="logo-img">
                     </div>
                     <div>
-                        <h1 class="logo-title">Publication Scout</h1>
+                        <h1 class="logo-title">PUBLICATION SCOUT!</h1>
                         <p class="logo-subtitle">CS &amp; AI Conference Tracker</p>
                     </div>
                 </div>
@@ -55,27 +51,27 @@
                             <span class="fetch-label">Fetch Latest</span>
                         </button>
                         <!-- Bookmarks Toggle -->
-                        <button class="btn-icon" id="bookmarksBtn" title="View bookmarked conferences">
-                            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                        <button class="btn-icon" id="bookmarksBtn" title="View bookmarked conferences" aria-label="View bookmarked conferences" aria-expanded="false" aria-controls="bookmarksPanel">
+                            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
                                 <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
                             </svg>
                             <span class="btn-badge" id="bookmarkCount" style="display:none">0</span>
                         </button>
                         <!-- Export CSV -->
-                        <button class="btn-icon" id="exportBtn" title="Export to CSV">
-                            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                        <button class="btn-icon" id="exportBtn" title="Export filtered results to CSV" aria-label="Export filtered results to CSV">
+                            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                     clip-rule="evenodd" />
                             </svg>
                         </button>
                         <!-- Theme Toggle -->
-                        <button class="btn-icon btn-theme" id="themeToggle" title="Toggle dark/light mode">
-                            <svg class="icon-moon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                        <button class="btn-icon btn-theme" id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark or light mode">
+                            <svg class="icon-moon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
                                 <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                             </svg>
                             <svg class="icon-sun" viewBox="0 0 20 20" fill="currentColor" width="18" height="18"
-                                style="display:none">
+                                style="display:none" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
                                     clip-rule="evenodd" />
@@ -96,19 +92,24 @@
         </header>
 
         <!-- Toast Notification -->
-        <div class="toast" id="toast"></div>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
         <!-- Bookmarks Panel -->
-        <aside class="bookmarks-panel" id="bookmarksPanel">
+        <aside class="bookmarks-panel" id="bookmarksPanel" role="dialog" aria-modal="true" aria-labelledby="bookmarksTitle">
             <div class="bookmarks-header">
-                <h2>📌 Bookmarked</h2>
-                <button class="btn-icon" id="closeBookmarks">
-                    <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                <h2 id="bookmarksTitle">📌 Bookmarked</h2>
+                <button class="btn-icon" id="closeBookmarks" aria-label="Close bookmarks panel">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
                         <path fill-rule="evenodd"
                             d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                             clip-rule="evenodd" />
                     </svg>
                 </button>
+            </div>
+            <div class="bookmarks-backup-bar">
+                <button class="btn-backup" id="exportBackupBtn" type="button">⬇ Export JSON</button>
+                <button class="btn-backup" id="importBackupBtn" type="button">⬆ Import JSON</button>
+                <input type="file" id="importBackupInput" accept="application/json" style="display:none">
             </div>
             <div class="bookmarks-list" id="bookmarksList">
                 <p class="bookmarks-empty">No bookmarks yet. Click the ★ icon on any conference row.</p>
@@ -127,6 +128,7 @@
                 <div class="stat-label">Upcoming Deadlines</div>
             </div>
             <div class="stat-card stat-card-urgent">
+                <span class="comic-burst" aria-hidden="true">ZAP!</span>
                 <div class="stat-value" id="urgentDeadlines">0</div>
                 <div class="stat-label">Due ≤ 30 Days</div>
             </div>
@@ -174,27 +176,30 @@
 
                     <div class="filter-row filter-row-bottom">
                         <div class="filter-group">
-                            <select id="filterRank" class="filter-select">
+                            <select id="filterRank" class="filter-select" aria-label="Filter by ranking">
                                 <option value="all">All Rankings</option>
                                 <option value="A*">CORE A*</option>
                                 <option value="A">CORE A</option>
+                                <option value="B">CORE B</option>
+                                <option value="Unranked">Unranked</option>
                                 <option value="Q1">Scimago Q1</option>
                                 <option value="Q2">Scimago Q2</option>
                                 <option value="Q3">Scimago Q3</option>
                                 <option value="Q4">Scimago Q4</option>
                             </select>
-                            <select id="filterHIndex" class="filter-select">
+                            <select id="filterHIndex" class="filter-select" aria-label="Filter by H-Index">
                                 <option value="all">Any H-Index</option>
                                 <option value="100">H-Index > 100</option>
                                 <option value="50">H-Index > 50</option>
                                 <option value="20">H-Index > 20</option>
+                                <option value="18">H-Index > 18</option>
                             </select>
-                            <select id="filterType" class="filter-select">
+                            <select id="filterType" class="filter-select" aria-label="Filter by venue type">
                                 <option value="all">All Types</option>
                                 <option value="conference">Conference</option>
                                 <option value="journal">Journal</option>
                             </select>
-                            <select id="filterTopic" class="filter-select">
+                            <select id="filterTopic" class="filter-select" aria-label="Filter by topic">
                                 <option value="all">All Topics</option>
                                 <option value="AI/ML">AI / Machine Learning</option>
                                 <option value="Computer Vision">Computer Vision</option>
@@ -210,7 +215,7 @@
                                 <option value="Graphics">Graphics & Multimedia</option>
                                 <option value="Bioinformatics">Bioinformatics</option>
                             </select>
-                            <select id="filterPlatform" class="filter-select">
+                            <select id="filterPlatform" class="filter-select" aria-label="Filter by submission platform">
                                 <option value="all">All Platforms</option>
                                 <option value="OpenReview">OpenReview</option>
                                 <option value="CMT3">CMT3</option>
@@ -218,14 +223,19 @@
                                 <option value="ARR">ARR (ACL Rolling Review)</option>
                                 <option value="HotCRP">HotCRP</option>
                             </select>
-                            <select id="filterStatus" class="filter-select">
+                            <select id="filterStatus" class="filter-select" aria-label="Filter by deadline status">
                                 <option value="all">All Status</option>
-                                <option value="open">Open for Submission</option>
-                                <option value="upcoming">Upcoming</option>
+                                <option value="open">Open (Active)</option>
+                                <option value="soon">Due ≤ 30 Days</option>
                                 <option value="closed">Closed</option>
                             </select>
                         </div>
                         <div class="toggle-group">
+                            <label class="toggle-label">
+                                <input type="checkbox" id="hideClosed" checked>
+                                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                                <span>Hide Closed</span>
+                            </label>
                             <label class="toggle-label">
                                 <input type="checkbox" id="topTierOnly">
                                 <span class="toggle-track"><span class="toggle-thumb"></span></span>
@@ -251,28 +261,28 @@
                     <table class="conference-table" id="conferenceTable">
                         <thead id="tableHead">
                             <tr>
-                                <th style="width:40px"></th>
-                                <th class="th-sortable" data-sort="name">
+                                <th style="width:40px"><span class="sr-only">Bookmark</span></th>
+                                <th class="th-sortable" data-sort="name" tabindex="0" role="button" aria-sort="none">
                                     <span>Conference</span>
-                                    <svg class="sort-icon" viewBox="0 0 16 16" fill="currentColor">
+                                    <svg class="sort-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                                         <path d="M8 1l4 5H4l4-5zm0 14l-4-5h8l-4 5z" />
                                     </svg>
                                 </th>
-                                <th class="th-sortable" data-sort="quality">
+                                <th class="th-sortable" data-sort="quality" tabindex="0" role="button" aria-sort="none">
                                     <span>Quality Score</span>
-                                    <svg class="sort-icon" viewBox="0 0 16 16" fill="currentColor">
+                                    <svg class="sort-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                                         <path d="M8 1l4 5H4l4-5zm0 14l-4-5h8l-4 5z" />
                                     </svg>
                                 </th>
                                 <th>Location &amp; Date</th>
-                                <th class="th-sortable" data-sort="deadline">
+                                <th class="th-sortable" data-sort="deadline" tabindex="0" role="button" aria-sort="ascending">
                                     <span>Submission Deadline</span>
-                                    <svg class="sort-icon" viewBox="0 0 16 16" fill="currentColor">
+                                    <svg class="sort-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                                         <path d="M8 1l4 5H4l4-5zm0 14l-4-5h8l-4 5z" />
                                     </svg>
                                 </th>
                                 <th>Platform</th>
-                                <th style="width:100px">Link</th>
+                                <th style="width:120px">Actions</th>
                                 <th class="td-notes" style="width:140px">Notes</th>
                             </tr>
                         </thead>
@@ -285,17 +295,26 @@
                 <!-- Pagination Controls -->
                 <div class="pagination" id="paginationControls" style="display:none;">
                     <button class="page-btn" id="prevPageBtn" disabled>
-                        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
                             <path fill-rule="evenodd"
                                 d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
                                 clip-rule="evenodd" />
                         </svg>
                         Previous
                     </button>
-                    <div class="page-info" id="pageInfo">Page 1 of 1</div>
+                    <div class="pagination-center">
+                        <span class="results-range" id="resultsRange">Showing 0 results</span>
+                        <span class="page-info" id="pageInfo">Page 1 of 1</span>
+                        <select id="pageSizeSelect" class="page-size-select" aria-label="Items per page">
+                            <option value="20" selected>20 / page</option>
+                            <option value="50">50 / page</option>
+                            <option value="100">100 / page</option>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
                     <button class="page-btn" id="nextPageBtn" disabled>
                         Next
-                        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
                             <path fill-rule="evenodd"
                                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                 clip-rule="evenodd" />
@@ -304,7 +323,7 @@
                 </div>
             </div>
             <div class="empty-state" id="emptyState" style="display:none;">
-                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64" aria-hidden="true">
                     <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" />
                     <path d="M22 32h20M32 22v20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </svg>
@@ -325,25 +344,25 @@
                 </div>
                 <div class="footer-bottom">
                     <p class="creator-branding">
-                        Created by <a href="https://github.com/SaadhJawwadh" target="_blank" class="creator-link">Saadh
+                        Created by <a href="https://github.com/SaadhJawwadh" target="_blank" rel="noopener noreferrer" class="creator-link">Saadh
                             Jawwadh</a>
                         &bull; vibe coded with <span class="antigravity-tag">Antigravity</span>
                     </p>
                     <div class="social-links">
-                        <a href="https://github.com/SaadhJawwadh" target="_blank" aria-label="GitHub">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <a href="https://github.com/SaadhJawwadh" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
                                 <path
                                     d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
                             </svg>
                         </a>
-                        <a href="https://twitter.com/SaadhJawwadh" target="_blank" aria-label="Twitter">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <a href="https://twitter.com/SaadhJawwadh" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
                                 <path
                                     d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                             </svg>
                         </a>
-                        <a href="https://linkedin.com/in/saadhjawwadh" target="_blank" aria-label="LinkedIn">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <a href="https://linkedin.com/in/saadhjawwadh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
                                 <path
                                     d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                             </svg>
@@ -351,14 +370,14 @@
                     </div>
                 </div>
                 <p class="footer-note">
-                    Data fetched from WikiCFP, CORE Rankings, and official conference websites.
+                    Data fetched from WikiCFP, ccfddl, CORE Rankings, and official conference websites.
                     Last synced: <span id="lastUpdated">Never</span>
                 </p>
             </div>
         </footer>
 
         <script src="db.js"></script>
-        <script src="app.js"></script>
+        <script type="module" src="js/main.js"></script>
     </body>
 
 </html>
