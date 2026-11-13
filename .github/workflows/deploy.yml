@@ -33,7 +33,7 @@ jobs:
       - name: Stage public site files
         run: |
           mkdir -p _site/js _site/data
-          cp index.html styles.css db.js conferences.json favicon.svg _site/
+          cp index.html styles.css db.js conferences.json favicon.svg logo.svg _site/
           cp -r js/* _site/js/
           cp -r data/* _site/data/
 

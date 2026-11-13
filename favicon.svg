@@ -1,17 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-    <defs>
-        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#818cf8" />
-            <stop offset="100%" stop-color="#c084fc" />
-        </linearGradient>
-    </defs>
-    <rect width="512" height="512" rx="112" fill="#0b0d14"/>
+    <!-- Hard Comic Offset Shadow -->
+    <rect x="44" y="44" width="440" height="440" rx="96" fill="#111111"/>
+    <!-- Canary Yellow Comic Tile -->
+    <rect x="20" y="20" width="440" height="440" rx="96" fill="#FFD600" stroke="#111111" stroke-width="28"/>
 
-    <!-- Abstract Graduation Cap -->
-    <path d="M256 128 L416 208 L256 288 L96 208 Z" fill="url(#primaryGrad)"/>
+    <!-- Subtle Comic Starburst Accent -->
+    <circle cx="116" cy="112" r="14" fill="#111111" opacity="0.14"/>
+    <circle cx="156" cy="96" r="10" fill="#111111" opacity="0.14"/>
+    <circle cx="98" cy="152" r="10" fill="#111111" opacity="0.14"/>
+
     <!-- Cap Base -->
-    <path d="M136 238 L136 344 C136 368 256 400 256 400 C256 400 376 368 376 344 L376 238 L256 298 Z" fill="#4f46e5" opacity="0.8"/>
-    <!-- Tassel -->
-    <path d="M416 208 L416 336" stroke="#06b6d4" stroke-width="20" stroke-linecap="round"/>
-    <circle cx="416" cy="354" r="14" fill="#06b6d4" />
+    <path d="M132 232 L132 324 C132 350 240 382 240 382 C240 382 348 350 348 324 L348 232 L240 286 Z"
+          fill="#1D4ED8" stroke="#111111" stroke-width="24" stroke-linejoin="round"/>
+
+    <!-- Graduation Cap Top -->
+    <path d="M240 116 L396 196 L240 276 L84 196 Z"
+          fill="#2563EB" stroke="#111111" stroke-width="24" stroke-linejoin="round"/>
+
+    <!-- Comic Highlight Streak -->
+    <path d="M168 188 L240 152 L284 174" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Center Button -->
+    <circle cx="240" cy="196" r="18" fill="#FFD600" stroke="#111111" stroke-width="14"/>
+
+    <!-- Comic Red Tassel -->
+    <path d="M376 206 L376 318" stroke="#111111" stroke-width="28" stroke-linecap="round"/>
+    <path d="M376 206 L376 318" stroke="#FF3B30" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="376" cy="336" r="24" fill="#FF3B30" stroke="#111111" stroke-width="16"/>
 </svg>
