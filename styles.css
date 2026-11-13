@@ -1483,16 +1483,86 @@ body {
 @media (max-width: 768px) {
     .header-inner {
         padding: 12px 16px;
+        gap: 12px;
     }
 
     .header-meta {
         display: none;
     }
 
+    .header-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .btn-fetch {
+        flex: 1;
+        justify-content: center;
+    }
+
     .stats-bar,
     .sync-info,
     .main-content {
-        padding: 0 16px;
+        padding: 0 14px;
+    }
+
+    .filter-section {
+        padding: 14px;
+    }
+
+    .search-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .search-input {
+        padding-right: 14px;
+    }
+
+    .search-kbd {
+        display: none;
+    }
+
+    .btn-filter-clear {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .filter-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        width: 100%;
+    }
+
+    .comic-select,
+    .comic-select-trigger {
+        width: 100%;
+    }
+
+    .comic-select-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .comic-select-menu {
+        min-width: 100%;
+        max-width: calc(100vw - 48px);
+    }
+
+    .toggle-group {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+    }
+
+    .table-scroll {
+        overflow-x: visible;
     }
 
     .td-notes {
@@ -1528,12 +1598,18 @@ body {
     }
 
     .conference-table td {
-        padding: 6px 0;
+        padding: 8px 0;
         border: none;
+        border-bottom: 1.5px dashed var(--border-soft);
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         gap: 12px;
+    }
+
+    .conference-table td:last-child {
+        border-bottom: none;
+        padding-bottom: 2px;
     }
 
     .conference-table td::before {
@@ -1549,6 +1625,8 @@ body {
     .conference-table td.td-bookmark {
         justify-content: flex-end;
         padding-top: 0;
+        border-bottom: none;
+        padding-bottom: 2px;
     }
 
     .conference-table td.td-bookmark::before {
@@ -1556,22 +1634,40 @@ body {
     }
 
     .conf-name-cell,
+    .quality-cell,
     .location-cell,
-    .deadline-cell {
+    .deadline-cell,
+    .action-cell {
         min-width: 0;
         align-items: flex-end;
         text-align: right;
     }
 
     .conf-name,
-    .conf-meta-row {
+    .conf-meta-row,
+    .cal-actions {
         justify-content: flex-end;
     }
 }
 
 @media (max-width: 480px) {
     .stats-bar {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 12px;
+        margin-top: 18px;
+    }
+
+    .stat-card {
+        padding: 14px 10px;
+    }
+
+    .stat-value {
+        font-size: 1.9rem;
+    }
+
+    .logo-group {
+        width: 100%;
+        justify-content: center;
     }
 
     .logo-title {
