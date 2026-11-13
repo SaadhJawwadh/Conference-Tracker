@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         setTheme(getTheme() === 'dark' ? 'light' : 'dark');
     });
 
-    document.getElementById('fetchBtn').addEventListener('click', () => fetchLatestData(false));
+    document.getElementById('fetchBtn')?.addEventListener('click', () => fetchLatestData(false));
     document.getElementById('searchInput').addEventListener('input', debounce(() => applyFilters(), 200));
 
     ['filterType', 'filterRank', 'filterQuartile', 'filterHIndex', 'filterTopic', 'filterPlatform', 'filterStatus', 'topTierOnly', 'bookmarkedOnly', 'qualityOnly', 'hideClosed'].forEach(id => {

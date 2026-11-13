@@ -2,7 +2,7 @@ name: Weekly Fetch & Deploy Conference Data
 
 on:
   schedule:
-    - cron: '0 0 * * 1' # Every Monday at 00:00 UTC
+    - cron: '0 0 */3 * *' # Every 3 days at midnight UTC
   workflow_dispatch:
 
 permissions:
