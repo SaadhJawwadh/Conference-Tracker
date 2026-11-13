@@ -122,10 +122,6 @@ async function parseWikiCFPRSS(xmlStr) {
         if (!acronymMatch) continue;
         const acronym = acronymMatch[1];
 
-        // Pre-check quality before making an extra HTTP request for deadlines
-        const preEnriched = enrichWithQuality({ acronym, rank: 'TBD', hIndex: null, scimagoQ: null });
-        if (!passesQualityGate(preEnriched)) continue;
-
         const yearMatch = title.match(/20(\d{2})/);
         const year = yearMatch ? '20' + yearMatch[1] : '2026';
 
@@ -170,7 +166,7 @@ async function parseWikiCFPRSS(xmlStr) {
             type: isJournal ? 'journal' : 'conference'
         });
 
-        if (passesQualityGate(entry)) results.push(entry);
+        results.push(entry);
     }
 
     return results;
@@ -228,7 +224,7 @@ function parseCCFDDLYaml(yamlText) {
             type: 'conference'
         });
 
-        if (passesQualityGate(entry)) results.push(entry);
+        results.push(entry);
     }
 
     return results;

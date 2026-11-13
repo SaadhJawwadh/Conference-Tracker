@@ -41,6 +41,7 @@ const FILTER_PARAMS = [
     { key: 'status', id: 'filterStatus', type: 'value', def: 'all' },
     { key: 'top', id: 'topTierOnly', type: 'checked', def: false },
     { key: 'bm', id: 'bookmarkedOnly', type: 'checked', def: false },
+    { key: 'quality', id: 'qualityOnly', type: 'checked', def: true },
     { key: 'hideClosed', id: 'hideClosed', type: 'checked', def: true }
 ];
 

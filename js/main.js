@@ -106,7 +106,8 @@ function resetAllFilters() {
     document.getElementById('filterStatus').value = 'all';
     document.getElementById('topTierOnly').checked = false;
     document.getElementById('bookmarkedOnly').checked = false;
-    document.getElementById('hideClosed').checked = true;
+    document.getElementById('qualityOnly').checked = false;
+    document.getElementById('hideClosed').checked = false;
     syncCustomDropdowns();
     applyFilters();
 }
@@ -241,7 +242,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('fetchBtn').addEventListener('click', () => fetchLatestData(false));
     document.getElementById('searchInput').addEventListener('input', debounce(() => applyFilters(), 200));
 
-    ['filterType', 'filterRank', 'filterQuartile', 'filterHIndex', 'filterTopic', 'filterPlatform', 'filterStatus', 'topTierOnly', 'bookmarkedOnly', 'hideClosed'].forEach(id => {
+    ['filterType', 'filterRank', 'filterQuartile', 'filterHIndex', 'filterTopic', 'filterPlatform', 'filterStatus', 'topTierOnly', 'bookmarkedOnly', 'qualityOnly', 'hideClosed'].forEach(id => {
         document.getElementById(id)?.addEventListener('change', () => applyFilters());
     });
 

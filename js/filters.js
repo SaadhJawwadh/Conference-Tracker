@@ -43,11 +43,24 @@ export function getFilteredData() {
     const statusFilter = document.getElementById('filterStatus')?.value || 'all';
     const topTierOnly = document.getElementById('topTierOnly')?.checked || false;
     const bookmarkedOnly = document.getElementById('bookmarkedOnly')?.checked || false;
+    const qualityOnly = document.getElementById('qualityOnly')?.checked || false;
     const hideClosed = document.getElementById('hideClosed')?.checked || false;
+
+    const validRanks = new Set(['A*', 'A', 'B']);
+    const validQ = new Set(['Q1', 'Q2']);
 
     const filtered = state.allConferences.filter(conf => {
         const confType = conf.type || 'conference';
         if (typeFilter !== 'all' && confType !== typeFilter) return false;
+
+        if (qualityOnly) {
+            const isQuality =
+                conf.dataSource === 'curated' ||
+                validRanks.has(conf.rank) ||
+                validQ.has(conf.scimagoQ) ||
+                (typeof conf.hIndex === 'number' && conf.hIndex > 18);
+            if (!isQuality) return false;
+        }
 
         const earliestDays = daysUntil(getEarliestDeadline(conf));
         const status = getDeadlineStatus(earliestDays);
