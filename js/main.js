@@ -89,7 +89,7 @@ async function fetchLatestData(isSilent = false) {
     } finally {
         if (!isSilent && btn) {
             btn.classList.remove('fetching');
-            btn.querySelector('.fetch-label').textContent = 'Fetch Latest';
+            btn.querySelector('.fetch-label').textContent = 'Refresh data';
             btn.disabled = false;
         }
     }
