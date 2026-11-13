@@ -99,6 +99,7 @@ function resetAllFilters() {
     document.getElementById('searchInput').value = '';
     document.getElementById('filterType').value = 'all';
     document.getElementById('filterRank').value = 'all';
+    document.getElementById('filterQuartile').value = 'all';
     document.getElementById('filterHIndex').value = 'all';
     document.getElementById('filterTopic').value = 'all';
     document.getElementById('filterPlatform').value = 'all';
@@ -240,7 +241,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('fetchBtn').addEventListener('click', () => fetchLatestData(false));
     document.getElementById('searchInput').addEventListener('input', debounce(() => applyFilters(), 200));
 
-    ['filterType', 'filterRank', 'filterHIndex', 'filterTopic', 'filterPlatform', 'filterStatus', 'topTierOnly', 'bookmarkedOnly', 'hideClosed'].forEach(id => {
+    ['filterType', 'filterRank', 'filterQuartile', 'filterHIndex', 'filterTopic', 'filterPlatform', 'filterStatus', 'topTierOnly', 'bookmarkedOnly', 'hideClosed'].forEach(id => {
         document.getElementById(id)?.addEventListener('change', () => applyFilters());
     });
 

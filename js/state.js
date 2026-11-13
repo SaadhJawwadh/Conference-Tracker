@@ -34,6 +34,7 @@ const FILTER_PARAMS = [
     { key: 'q', id: 'searchInput', type: 'value', def: '' },
     { key: 'type', id: 'filterType', type: 'value', def: 'all' },
     { key: 'rank', id: 'filterRank', type: 'value', def: 'all' },
+    { key: 'qlevel', id: 'filterQuartile', type: 'value', def: 'all' },
     { key: 'h', id: 'filterHIndex', type: 'value', def: 'all' },
     { key: 'topic', id: 'filterTopic', type: 'value', def: 'all' },
     { key: 'platform', id: 'filterPlatform', type: 'value', def: 'all' },

@@ -36,6 +36,7 @@ export function getFilteredData() {
     const search = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
     const typeFilter = document.getElementById('filterType')?.value || 'all';
     const rankFilter = document.getElementById('filterRank')?.value || 'all';
+    const quartileFilter = document.getElementById('filterQuartile')?.value || 'all';
     const hIndexFilter = document.getElementById('filterHIndex')?.value || 'all';
     const topicFilter = document.getElementById('filterTopic')?.value || 'all';
     const platformFilter = document.getElementById('filterPlatform')?.value || 'all';
@@ -60,13 +61,8 @@ export function getFilteredData() {
             if (!haystack.includes(search)) return false;
         }
 
-        if (rankFilter !== 'all') {
-            if (['Q1', 'Q2', 'Q3', 'Q4'].includes(rankFilter)) {
-                if (conf.scimagoQ !== rankFilter) return false;
-            } else {
-                if (conf.rank !== rankFilter) return false;
-            }
-        }
+        if (rankFilter !== 'all' && conf.rank !== rankFilter) return false;
+        if (quartileFilter !== 'all' && conf.scimagoQ !== quartileFilter) return false;
 
         if (hIndexFilter !== 'all') {
             const minH = parseInt(hIndexFilter, 10);

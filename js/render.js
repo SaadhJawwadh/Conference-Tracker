@@ -41,13 +41,24 @@ export function renderConferenceRow(conf) {
     else if (conf.rank === 'A') rankClass = 'rank-a';
     else if (conf.rank === 'B' || conf.rank === 'Unranked') rankClass = 'rank-q1';
 
+    const isJournal = conf.type === 'journal';
+    let primaryBadgeHTML = '<span class="rank-badge rank-tbd">TBD</span>';
+    if (isJournal && conf.scimagoQ) {
+        const qClass = conf.scimagoQ === 'Q1' ? 'rank-a-star' : 'rank-q1';
+        primaryBadgeHTML = `<span class="rank-badge ${qClass}">Scimago ${sanitize(conf.scimagoQ)}</span>`;
+    } else if (conf.rank && conf.rank !== 'TBD') {
+        primaryBadgeHTML = `<span class="rank-badge ${rankClass}">CORE ${sanitize(conf.rank)}</span>`;
+    } else if (conf.scimagoQ) {
+        primaryBadgeHTML = `<span class="rank-badge rank-q1">Scimago ${sanitize(conf.scimagoQ)}</span>`;
+    }
+
     const hIndexHTML = conf.hIndex ? `<span class="h-index">H-index: <span>${Number(conf.hIndex)}</span></span>` : '';
-    const scimagoHTML = conf.scimagoQ ? `<span class="h-index">Scimago: <span>${sanitize(conf.scimagoQ)}</span></span>` : '';
+    const scimagoHTML = !isJournal && conf.scimagoQ ? `<span class="h-index">Scimago: <span>${sanitize(conf.scimagoQ)}</span></span>` : '';
     const dataSourceHTML = conf.dataSource === 'curated'
         ? `<span class="source-badge source-curated">Curated</span>`
         : `<span class="source-badge source-live">${sanitize(conf.dataSource || 'LIVE')}</span>`;
 
-    const typeBadgeHTML = conf.type === 'journal'
+    const typeBadgeHTML = isJournal
         ? `<span class="source-badge type-journal">Journal</span>`
         : `<span class="source-badge type-conference">Conf</span>`;
 
@@ -81,7 +92,7 @@ export function renderConferenceRow(conf) {
             </td>
             <td data-label="Quality">
                 <div class="quality-cell">
-                    ${conf.rank && conf.rank !== 'TBD' ? `<span class="rank-badge ${rankClass}">CORE ${sanitize(conf.rank)}</span>` : '<span class="rank-badge rank-tbd">TBD</span>'}
+                    ${primaryBadgeHTML}
                     ${hIndexHTML}
                     ${scimagoHTML}
                 </div>
