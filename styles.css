@@ -1098,6 +1098,11 @@ body {
     border-radius: 0 0 calc(var(--radius-lg) - 3px) calc(var(--radius-lg) - 3px);
 }
 
+.explorer-card.no-pagination .table-scroll {
+    border-radius: 0 0 calc(var(--radius-lg) - 3px) calc(var(--radius-lg) - 3px);
+    overflow-y: hidden;
+}
+
 .page-btn {
     display: inline-flex;
     align-items: center;

@@ -167,10 +167,18 @@ export function renderTable(data) {
         resultsRange.textContent = `Showing ${startIdx + 1}–${endIdx} of ${data.length}`;
     }
 
-    paginationControls.style.display = 'flex';
-    document.getElementById('pageInfo').textContent = `Page ${state.currentPage} of ${totalPages}`;
-    document.getElementById('prevPageBtn').disabled = state.currentPage === 1;
-    document.getElementById('nextPageBtn').disabled = state.currentPage === totalPages;
+    const showPagination = totalPages > 1 || (state.itemsPerPage === 'all' && data.length > 20);
+    const explorerCard = document.querySelector('.explorer-card');
+    if (showPagination) {
+        paginationControls.style.display = 'flex';
+        explorerCard?.classList.remove('no-pagination');
+        document.getElementById('pageInfo').textContent = `Page ${state.currentPage} of ${totalPages}`;
+        document.getElementById('prevPageBtn').disabled = state.currentPage === 1;
+        document.getElementById('nextPageBtn').disabled = state.currentPage === totalPages;
+    } else {
+        paginationControls.style.display = 'none';
+        explorerCard?.classList.add('no-pagination');
+    }
 }
 
 export function updateStats(data) {
