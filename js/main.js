@@ -14,6 +14,7 @@ import {
     openNotesModal
 } from './render.js';
 import { getNow, showToast, debounce } from './utils.js';
+import { initCustomDropdowns, syncCustomDropdowns } from './dropdown.js';
 
 function setFetchProgress(pct, text) {
     const bar = document.getElementById('fetchStatusBar');
@@ -105,6 +106,7 @@ function resetAllFilters() {
     document.getElementById('topTierOnly').checked = false;
     document.getElementById('bookmarkedOnly').checked = false;
     document.getElementById('hideClosed').checked = true;
+    syncCustomDropdowns();
     applyFilters();
 }
 
@@ -191,6 +193,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     readFiltersFromURL();
+    initCustomDropdowns();
 
     await window.DB.init();
     const [storedConfs, lastSync, lastCount, bookmarkIds, notes] = await Promise.all([

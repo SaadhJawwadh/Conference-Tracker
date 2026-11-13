@@ -525,7 +525,7 @@ body {
     border: 3px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-comic-lg);
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* ——— Filter Section ——— */
@@ -533,6 +533,7 @@ body {
     padding: 18px 20px;
     background: var(--bg-surface-2);
     border-bottom: 3px solid var(--border);
+    border-radius: calc(var(--radius-lg) - 3px) calc(var(--radius-lg) - 3px) 0 0;
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -1678,4 +1679,123 @@ body {
     font-size: 0.78rem;
     font-weight: 700;
     cursor: pointer;
+}
+
+/* ——— Custom Classic Comic Dropdown ——— */
+.comic-select {
+    position: relative;
+    display: inline-block;
+}
+
+.comic-select-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 14px;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 2.5px solid var(--border);
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 var(--ink);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.12s ease;
+    white-space: nowrap;
+}
+
+.comic-select-sm .comic-select-trigger {
+    padding: 5px 11px;
+    border-radius: var(--radius-sm);
+    font-size: 0.78rem;
+}
+
+.comic-select.has-value .comic-select-trigger {
+    background: var(--comic-yellow);
+    color: #111111;
+}
+
+.comic-select-trigger:hover,
+.comic-select.open .comic-select-trigger {
+    background: var(--bg-surface-3);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+.comic-select.has-value .comic-select-trigger:hover,
+.comic-select.has-value.open .comic-select-trigger {
+    background: var(--comic-yellow-hover);
+}
+
+.comic-select-arrow {
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.18s ease;
+}
+
+.comic-select.open .comic-select-arrow {
+    transform: rotate(180deg);
+}
+
+.comic-select-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 80;
+    min-width: 195px;
+    max-height: 280px;
+    overflow-y: auto;
+    list-style: none;
+    background: var(--bg-surface);
+    border: 3px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 6px;
+    box-shadow: var(--shadow-comic);
+    display: none;
+}
+
+.comic-select-menu-up {
+    top: auto;
+    bottom: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    min-width: 120px;
+}
+
+.comic-select.open .comic-select-menu {
+    display: block;
+}
+
+.comic-select-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 7px;
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background 0.1s ease, border-color 0.1s ease;
+}
+
+.comic-select-option:hover {
+    background: var(--bg-surface-2);
+    border-color: var(--border);
+}
+
+.comic-select-option.selected {
+    background: var(--comic-yellow);
+    color: #111111;
+    border-color: #111111;
+}
+
+.comic-opt-check {
+    width: 14px;
+    font-weight: 900;
+    text-align: center;
+    flex-shrink: 0;
 }
