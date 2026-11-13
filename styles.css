@@ -1095,6 +1095,7 @@ body {
     padding: 14px 20px;
     background: var(--bg-surface-2);
     border-top: 3px solid var(--border);
+    border-radius: 0 0 calc(var(--radius-lg) - 3px) calc(var(--radius-lg) - 3px);
 }
 
 .page-btn {
