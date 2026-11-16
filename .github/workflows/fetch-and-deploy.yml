@@ -52,6 +52,6 @@ jobs:
     if: needs.fetch-data.outputs.updated == 'true' || github.event_name == 'workflow_dispatch'
     uses: ./.github/workflows/deploy.yml
     permissions:
-      contents: read
+      contents: write # required because deploy.yml's release job requests it
       pages: write
       id-token: write
